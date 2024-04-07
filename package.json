@@ -1,0 +1,16 @@
+{
+  "name": "spooktube",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Saahil <neon@saahild.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.19.2",
+    "simple-json-db": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
