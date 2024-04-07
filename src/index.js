@@ -35,7 +35,7 @@ app.get('/video/:id', (req, res) => {
   // const db = new Database(path.join(__dirname, 'db', 'db.json'))
   // const video = db.get(req.params.id)
   // if (video) {
-    res.render('video', { video })
+  res.render('video', { video })
   // } else {
   //   res.status(404).send('Video not found')
   // }
