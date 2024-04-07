@@ -8,7 +8,10 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
-    "simple-json-db": "^2.0.0"
+    "ffmpeg": "^0.0.4",
+    "ffmpeg-static": "^5.2.0",
+    "simple-json-db": "^2.0.0",
+    "video-thumb": "^0.0.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

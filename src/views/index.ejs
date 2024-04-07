@@ -1,10 +1,75 @@
 <div class="hero min-h-screen bg-base-200">
     <div class="hero-content text-center">
-      <div class="max-w-md">
-        <h1 class="text-5xl font-bold">Comming Soon</h1>
-        <p class="pt-6">A most <em>definitely</em> moderated version of spooktube </p>
-        <p class="pb-6">NOTE: this is site is not affiliated with content warning at all!!</p>
-        <button class="btn btn-primary" onclick="window.location.href = 'https://saahild.com'">Visit my site till then!</button>
+      <div class="lg:max-w-full max-w-md max-h-fit">
+        <h1 class="mb-5 text-5xl font-bold">Welcome to SpookTube</h1>
+        <p class="mb-5">
+       Content warning spooktube content uploaded here. 
+       Warning: This site may contain content that is not suitable for all ages. Viewer discretion is advised.
+        </p>
+        <!-- <div class="flex  items-center justify-center space-x-5">
+          <a href="/videos" class="btn btn-primary">Watch Videos</a>
+          <a href="/stories" class="btn btn-secondary">Read Stories</a>
+        </div> -->
+<br>
+<br>
+<div class="grid grid-cols-2 lg:grid-cols-4 lg:gap-20 gap-10 ">
+<% for (let i = 0; i < 4; i++) { %>
+  <div class="grid gap-20">
+    <div class="hover:scale-105 ease-in-out duration-500">
+        <!-- <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt=""> -->
+        <a href="/video/VIDEO_ID"class="card h-auto card-compact bg-base-100 shadow-xl">
+          <figure><img class="rounded-sm" src="example-cover.png" alt="Shoes" /></figure>
+          <div class="card-body">
+            <h2 class="card-title">VIDEO_TITLE</h2>
+            <p>VIDEO_DESCRIPTION</p>
+            <!-- <div class="card-actions justify-end">
+              <button class="btn btn-primary">Buy Now</button>
+            </div> -->
+          </div>
+        </a>
+      </div>
+    <div class="hover:scale-105 ease-in-out duration-500">
+      <a class="card h-auto card-compact bg-base-100 shadow-xl">
+        <figure><img class="rounded-lg" src="example-cover2.png" alt="Shoes" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">VIDEO_TITLE</h2>
+          <p>VIDEO_DESCRIPTION</p>
+          <!-- <div class="card-actions justify-end">
+            <button class="btn btn-primary">Buy Now</button>
+          </div> -->
+        </div>
+      </a>
+    </div>
+</div>
+<% } %>
+<br>
+
+  <!-- <div class="grid gap-20">
+      <div>
+          <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt="">
+      </div>
+      <div>
+          <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt="">
+      </div>
+  </div>
+  <div class="grid gap-20">
+      <div>
+          <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt="">
+      </div>
+      <div>
+          <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt="">
+      </div>
+  </div>
+  <div class="grid  gap-20">
+      <div>
+          <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt="">
+      </div>
+      <div>
+          <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt="">
+      </div>
+  </div> -->
+</div>
+
       </div>
     </div>
   </div>
