@@ -2,7 +2,7 @@ require('dotenv').config()
 const Database = require("simple-json-db");
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.SERVER_PORT || 3000
 const path = require('path')
 const fs = require('fs')
 const { exec } = require('child_process');
