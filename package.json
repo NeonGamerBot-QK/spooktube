@@ -10,6 +10,7 @@
     "express": "^4.19.2",
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^5.2.0",
+    "get-video-dimensions": "^1.0.0",
     "simple-json-db": "^2.0.0",
     "video-thumb": "^0.0.3"
   },

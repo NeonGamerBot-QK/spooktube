@@ -1,0 +1,82 @@
+<div id="webplayer">
+   
+</div>
+<div id="views"></div>
+<div class="inline-flex border border-gray-200 rounded-full p-0.5 dark:border-gray-700">
+    <button data-type="like" type="button" class="inline-flex flex-shrink-0 justify-center items-center size-8 rounded-full text-gray-500 hover:bg-blue-100 hover:text-blue-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:hover:bg-blue-900 dark:hover:text-blue-200">
+      <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 10v12"></path>
+        <path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"></path>
+      </svg>
+      0
+    </button>
+    <button data-type="dislike" type="button" class="inline-flex flex-shrink-0 justify-center items-center size-8 rounded-full text-gray-500 hover:bg-blue-100 hover:text-blue-800 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:hover:bg-blue-900 dark:hover:text-blue-200">
+      <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 14V2"></path>
+        <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22h0a3.13 3.13 0 0 1-3-3.88Z"></path>
+      </svg>
+      0
+    </button>
+  </div>
+<!-- <div id="likes">
+    <button type="button" class="text-blue-700 hover:border hover:border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="#888" viewBox="0 0 18 18">
+        <path d="M3 7H1a1 1 0 0 0-1 1v8a2 2 0 0 0 4 0V8a1 1 0 0 0-1-1Zm12.954 0H12l1.558-4.5a1.778 1.778 0 0 0-3.331-1.06A24.859 24.859 0 0 1 6 6.8v9.586h.114C8.223 16.969 11.015 18 13.6 18c1.4 0 1.592-.526 1.88-1.317l2.354-7A2 2 0 0 0 15.954 7Z"/>
+        </svg>
+        <span class="sr-only">Icon description</span>
+        </button>
+    <div id="likes_count"></div>
+
+</div> -->
+<script>
+    let code = ` <vm-player muted>
+        <vm-video id="video" poster="/{VIDEO_POSTER}" cross-origin>
+          <!-- Why \`data-src\`? Lazy loading. You can always use \`src\` if you don't need it. -->
+          <source data-src="/{VIDEO_TEMP}" type="video/webm" />
+          <!-- <trackas
+            default
+            kind="subtitles"
+            src="/media/subs/en.vtt"
+            srclang="en"
+            label="English"
+          /> -->
+        </vm-video>
+      
+        <!-- Loads the default Vime UI. -->
+        <vm-default-ui />
+      </vm-player>
+      `
+    ;(() => {
+        const video_id = window.location.pathname.split('/')[2].split('?')[0]
+        document.getElementById('webplayer').innerHTML = code.replace(/{VIDEO_TEMP}/g, `/media/videos/${video_id}.webm`).replace(/{VIDEO_POSTER}/g, `/media/thumbnails/${video_id}.png`)
+        // since the video was deployed to a client update the views
+        fetch(`/video/${video_id}/view`, {
+            method: 'POST'
+        }).then(r=>r.json()).then(({ views}) => {
+            document.getElementById('views').innerText = views
+        })
+        fetch(`/video/${video_id}/likes`).then(r=>r.json()).then(({ likes}) => {
+            document.getElementById('likes_count').innerText = likes
+        })
+        fetch(`/video/${video_id}/dislikes`).then(r=>r.json()).then(({ dislikes}) => {
+            document.getElementById('dislikes').innerText = dislikes
+        })
+
+// likesBtn.addEventListener('click', () => {
+// if(likesBtn.children[0].getAttribute('fill') == "#888")    likesBtn.children[0].setAttribute('fill', 'currentColor')
+// else likesBtn.children[0].setAttribute('fill', '#888')
+// })
+const likeanddislikeButtons = document.querySelectorAll('[data-type="like"], [data-type="dislike"]')
+likeanddislikeButtons.forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const type = btn.getAttribute('data-type')
+        const res = await fetch(`/video/${video_id}/${type}`, {
+            method: 'POST'
+        })
+        const { likes, dislikes } = await res.json()
+        document.getElementById('likes_count').innerText = likes
+        document.getElementById('dislikes').innerText = dislikes
+    })
+})
+})()
+</script>

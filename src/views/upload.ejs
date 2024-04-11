@@ -20,6 +20,22 @@
        <input class="btn btn-neutral m-5 ml-10" type="submit">
        </div>
     </form>
+    <script>
+      const form = document.getElementById('createForm');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        const data = await res.json();
+        console.log(data);
+        if (data.success) {
+          window.location.href = `/videos/${data.id}`;
+        }
+      });
+    </script>
  </div>
  </div>
  </div>
