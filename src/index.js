@@ -43,11 +43,11 @@ app.get('/video/:id', (req, res) => {
 })
 app.post('/video/create', (req, res) => {
   const {
-    name, 
+    name,
     description,
     video
   } = req.body
-  const id = crypto.randomBytes(16).toString('hex').slice(0,6)
+  const id = crypto.randomBytes(16).toString('hex').slice(0, 6)
   db.set(id, {
     id,
     name,
@@ -59,7 +59,6 @@ app.post('/video/create', (req, res) => {
     comments: []
   })
   res.status(201).json({ id })
-
 })
 app.post('/video/:id/like', (req, res) => {
   const video = db.get(req.params.id)
